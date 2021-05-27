@@ -1,4 +1,4 @@
-package com.rachelmarotta.desafioandroid.Service
+package com.rachelmarotta.desafioandroid.service
 
 import com.rachelmarotta.desafioandroid.model.GithubListRepository
 import retrofit2.http.GET

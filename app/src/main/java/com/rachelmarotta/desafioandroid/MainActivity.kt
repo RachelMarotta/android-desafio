@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.rachelmarotta.desafioandroid.Service.ApiService
-import com.rachelmarotta.desafioandroid.Service.GithubService
+import com.rachelmarotta.desafioandroid.service.ApiService
+import com.rachelmarotta.desafioandroid.service.GithubService
 import com.rachelmarotta.desafioandroid.adapter.RepositoryAdapter
 import com.rachelmarotta.desafioandroid.model.GithubListRepository
 import com.rachelmarotta.desafioandroid.model.Item
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 response: Response<GithubListRepository>
             ) {
                 if(response.isSuccessful) {
-                    listRepositories.addAll(response.body()!!.list)
+                    listRepositories.addAll(response.body()!!.items)
                     repositoryAdapter = RepositoryAdapter(listRepositories)
 
                     if(page > 1) {
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                 call: Call<GithubListRepository>,
                 t: Throwable?
             ) {
-//                    Toast.makeText(this, "Erro", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                 t?.message?.let { Log.e("onFailure error", it) }
             }
         })

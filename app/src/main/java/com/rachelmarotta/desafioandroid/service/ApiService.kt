@@ -1,4 +1,4 @@
-package com.rachelmarotta.desafioandroid.Service
+package com.rachelmarotta.desafioandroid.service
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
