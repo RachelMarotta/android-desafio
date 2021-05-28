@@ -2,7 +2,9 @@ package com.rachelmarotta.desafioandroid
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rachelmarotta.desafioandroid.service.ApiService
@@ -20,21 +22,52 @@ class MainActivity : AppCompatActivity() {
     lateinit var layoutManager: LinearLayoutManager
     lateinit var repositoryAdapter: RepositoryAdapter
     lateinit var listRepositories: MutableList<Item>
+    lateinit var progressBar: ProgressBar
+
     var page: Int = 1
+    var isLoading: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         recyclerview = findViewById(R.id.recyclerview_list)
-        layoutManager = LinearLayoutManager(this)
+        layoutManager = LinearLayoutManager(this@MainActivity)
         recyclerview.layoutManager = layoutManager
         listRepositories = arrayListOf()
+        progressBar = findViewById(R.id.progressbar)
 
         getRepositories(page)
+
+        scrollPage()
     }
 
-    fun getRepositories(page: Int) {
+    private fun scrollPage() {
+
+        recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, firstPosition: Int, lastPosition: Int) {
+
+                val visibleItemCount = layoutManager.childCount
+                val lastVisibleItem = layoutManager.findLastCompletelyVisibleItemPosition()
+                val total = repositoryAdapter.itemCount
+
+                if (!isLoading) {
+
+                    if ((visibleItemCount + lastVisibleItem ) >= total) {
+                        page++
+                        getRepositories(page)
+                    }
+                }
+                super.onScrolled(recyclerView, firstPosition, lastPosition)
+            }
+        })
+
+    }
+
+    private fun getRepositories(page: Int) {
+
+        isLoading = true
+        progressBar.visibility = View.VISIBLE
 
         val request = ApiService.buildService(GithubService::class.java)
         val call = request.getListRepositories(page)
@@ -59,17 +92,17 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
+                isLoading = false
+                progressBar.visibility = View.GONE
             }
 
             override fun onFailure(
                 call: Call<GithubListRepository>,
                 t: Throwable?
             ) {
-//                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
-                t?.message?.let { Log.e("onFailure error", it) }
+                Toast.makeText(this@MainActivity, "Error", Toast.LENGTH_SHORT).show()
             }
         })
-
     }
 }
 
