@@ -14,8 +14,7 @@
         android:id="@+id/card_view"
         android:layout_gravity="center"
         card_view:cardCornerRadius="4dp"
-        android:backgroundTint="@color/teal_700"
-        >
+        android:backgroundTint="@color/purple_200" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,12 +28,17 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/repository_photo"
                 android:layout_marginEnd="16dp"
-                android:contentDescription="Foto do autor do repositório" />
+                android:contentDescription="@string/repository_photo" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Repositório:"
+                android:text="@string/repository_name"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -42,12 +46,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:layout_marginStart="2dp" />
+                android:layout_marginStart="8dp" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descrição:"
+                android:text="@string/description"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -57,10 +64,15 @@
                 android:textSize="15sp"
                 android:layout_marginStart="2dp" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Autor:"
+                android:text="@string/author"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -68,12 +80,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:layout_marginStart="2dp" />
+                android:layout_marginStart="8dp" />
 
-            <TextView
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Estrelas:"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_star"
                 android:textStyle="bold" />
 
             <TextView
@@ -81,12 +99,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:layout_marginStart="2dp" />
+                android:layout_marginStart="8dp" />
 
-            <TextView
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Forks:"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_git_fork_icon"
                 android:textStyle="bold" />
 
             <TextView
@@ -94,7 +118,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:layout_marginStart="2dp" />
+                android:layout_marginStart="8dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
