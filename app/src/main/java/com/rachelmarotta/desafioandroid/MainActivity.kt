@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressbar)
 
         getRepositories(page)
-
         scrollPage()
     }
 

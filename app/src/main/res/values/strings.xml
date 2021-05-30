@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Desafio Android</string>
+    <string name="app_name">Repositórios Github</string>
     <string name="repository_name">Repositório:</string>
     <string name="description">Descrição:</string>
     <string name="author">Autor:</string>
