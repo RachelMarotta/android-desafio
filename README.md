@@ -8,3 +8,4 @@ O Objetivo deste projeto foi criar um aplicativo Android em Kotlin para consulta
 - [x] Descrição do repositório;
 - [x] Scroll infinito;
 
+![](desafio-android.gif)
